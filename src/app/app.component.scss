@@ -1,0 +1,64 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$green-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ ),
+ density: 0,
+));
+
+// Emit theme-dependent styles for common features used across multiple components.
+@include mat.core-theme($my-theme);
+
+// Emit styles for MatButton based on `$my-theme`. Because the configuration
+// passed to `define-light-theme` omits typography, `button-theme` will not
+// emit any typography styles.
+@include mat.button-theme($my-theme);
+@include mat.toolbar-theme($my-theme);
+
+// Include the theme mixins for other components you use here.
+
+.spacer {
+  flex: 1 1 auto;
+}
+.logo {
+  /*height: 80px;*/
+}
+
+.mat-drawer-container {
+  flex: 1 1 auto;
+}
+
+footer {
+  background-color: #f57f0b;
+  border-top: 2px solid white;
+  text-align: center;
+}
+
+#content {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-size: x-large;
+}
+
+main {
+  flex-grow: 1;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.mat-drawer-container {
+  color: #2c2c2c;
+  background-color: white;
+}
+mat-toolbar, main, footer {
+  flex-shrink: 0;
+}
