@@ -1,0 +1,19 @@
+mat-list {
+  text-align: left;
+}
+mat-list-item {
+  border-bottom: 1px solid #e0e0e0;
+  margin: 5px;
+}
+mat-list-item:last-child {
+  border-bottom: none;
+}
+
+.current-date {
+  background-color: #4bb04f;
+}
+.current-date h3,
+.current-date p {
+  color: white;
+}
+

@@ -1,1 +1,7 @@
-<p>calendar works!</p>
+<h2>Kalender für {{year}}</h2>
+<mat-list>
+  <mat-list-item *ngFor="let blessing of blessings" lines="2" [ngClass]="{'current-date': isToday(blessing.date)}" [id]="'blessing-' + blessing.date">
+    <h3 matListItemTitle>{{blessing.date | date: "dd.MM.YYYY"}}</h3>
+    <p matListItemLine>{{blessing.blessing}}</p>
+  </mat-list-item>
+</mat-list>

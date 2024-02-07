@@ -57,11 +57,22 @@ $my-theme: mat.define-light-theme((
 
 // Include the theme mixins for other components you use here.
 
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px;
+}
+.title a {
+  color: white;
+  text-decoration: none;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 .logo {
   height: 64px;
+  cursor: pointer;
 }
 
 .mat-drawer-container {

@@ -22,4 +22,8 @@ export class ApiService {
   public getAllBlessings(): Observable<Blessing[]> {
     return this.http.get<Blessing[]>(`${this.backendUrl}/blessings/language/de`);
   }
+
+  public getBlessingCalender(year: number): Observable<Blessing[]> {
+    return this.http.get<Blessing[]>(`${this.backendUrl}/blessings/year/${year}`);
+  }
 }
