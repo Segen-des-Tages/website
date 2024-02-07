@@ -8,11 +8,13 @@ import { HomeComponent } from './home/home.component';
 import { BlessingsComponent } from './blessings/blessings.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SupportComponent } from './support/support.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path : 'home', component: HomeComponent },
   { path : 'ueber', component: AboutComponent },
+  { path : 'helfen', component: SupportComponent},
   { path : 'kontakt', component: ContactComponent },
   { path : 'kalender', component: CalendarComponent },
   { path : 'kalender/:date', component: CalendarComponent},

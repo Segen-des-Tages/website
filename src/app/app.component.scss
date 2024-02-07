@@ -2,7 +2,40 @@
 
 @include mat.core();
 
-$my-primary: mat.define-palette(mat.$green-palette, 500);
+$my-pallete: (
+  50 : #e9f6ea,
+  100 : #c9e7ca,
+  200 : #a5d8a7,
+  300 : #81c884,
+  400 : #66bc69,
+  500 : #4bb04f,
+  600 : #44a948,
+  700 : #3ba03f,
+  800 : #339736,
+  900 : #238726,
+  A100 : #c6ffc7,
+  A200 : #93ff95,
+  A400 : #60ff63,
+  A700 : #47ff4a,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$my-primary: mat.define-palette($my-pallete, 500, 300, 800);
 $my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 $my-theme: mat.define-light-theme((
@@ -28,7 +61,7 @@ $my-theme: mat.define-light-theme((
   flex: 1 1 auto;
 }
 .logo {
-  /*height: 80px;*/
+  height: 64px;
 }
 
 .mat-drawer-container {
@@ -36,9 +69,15 @@ $my-theme: mat.define-light-theme((
 }
 
 footer {
-  background-color: #f57f0b;
+  background-color: #4bb04f;
   border-top: 2px solid white;
   text-align: center;
+  color: white;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 #content {
@@ -52,6 +91,7 @@ footer {
 main {
   flex-grow: 1;
   margin-left: 10px;
+  margin-right: 10px;
   text-align: center;
 }
 
