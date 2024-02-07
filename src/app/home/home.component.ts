@@ -1,21 +1,38 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 
 import { ApiService } from '../services/api.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   blessingOfTheDay = 'Segen des Tages';
+  date: Date;
   constructor(
-    private api: ApiService
+    private api: ApiService,
+    private route: ActivatedRoute
   ) { 
-    this.api.getBlessingOfTheDay().subscribe((blessing) => {
-      this.blessingOfTheDay = blessing.blessing;
+    this.date = new Date();
+    this.route.params.subscribe(params => {
+      const date = params['date'];
+      if (date) {
+        this.api.getBlessingByDate(date).subscribe((blessing) => {
+          this.blessingOfTheDay = blessing.blessing;
+          this.date = blessing.date;
+        });
+      } else {
+        this.api.getBlessingOfTheDay().subscribe((blessing) => {
+          this.blessingOfTheDay = blessing.blessing;
+          this.date = blessing.date;
+        });
+      }
     });
   }
 }

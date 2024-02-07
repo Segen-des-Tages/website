@@ -1,6 +1,8 @@
 <h2>Alle Segenssprüche in der Datenbank</h2>
+<mat-form-field appearance="fill">
+  <mat-label>Filter</mat-label>
+  <input matInput (input)="applyFilter($event)">
+</mat-form-field>
 <ul>
-  <li *ngFor="let blessing of blessings">
-    {{blessing.blessing}}
-  </li>
+  <li *ngFor="let blessing of filteredBlessings" [innerHTML]="blessing.blessing | highlight: filterString"></li>
 </ul>
