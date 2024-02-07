@@ -1,0 +1,15 @@
+ul {
+  text-align: left;
+  list-style-type: none;
+}
+li {
+  border-bottom: 1px solid #e0e0e0;
+  margin: 5px;
+  word-wrap: break-word;
+  width: 100%;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+li:last-child {
+  border-bottom: none;
+}

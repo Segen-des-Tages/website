@@ -9,6 +9,7 @@ import { Blessing } from '../models/blessing';
   providedIn: 'root'
 })
 export class ApiService {
+  
   public backendUrl = environment.backendUrl;
 
   constructor(
@@ -17,5 +18,8 @@ export class ApiService {
 
   public getBlessingOfTheDay(): Observable<Blessing> {
     return this.http.get<Blessing>(`${this.backendUrl}/de/today`);
+  }
+  public getAllBlessings(): Observable<Blessing[]> {
+    return this.http.get<Blessing[]>(`${this.backendUrl}/blessings/language/de`);
   }
 }
