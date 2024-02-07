@@ -5,10 +5,15 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { DatePipe } from '@angular/common';
 
+import { ShareModule } from 'ngx-sharebuttons';
+import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, ShareModule, MatButtonModule, MatIconModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
