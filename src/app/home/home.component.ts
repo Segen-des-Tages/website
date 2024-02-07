@@ -19,3 +19,4 @@ export class HomeComponent {
     });
   }
 }
+// TODO: if a date is passed, get the blessing for that date instead of the current date

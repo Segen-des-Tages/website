@@ -13,6 +13,7 @@ import { SupportComponent } from './support/support.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path : 'home', component: HomeComponent },
+  { path : 'home/:date', component: HomeComponent},
   { path : 'ueber', component: AboutComponent },
   { path : 'helfen', component: SupportComponent},
   { path : 'kontakt', component: ContactComponent },
