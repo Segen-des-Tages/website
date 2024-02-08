@@ -18,3 +18,21 @@ button {
   margin-right: 5px;
 }
 
+.link {
+  display: none;
+}
+
+@media print {
+  .date {
+    color:#4bb04f;
+    background-color: #fff;
+    border: none;
+  }
+  share-buttons {
+    display: none;
+  }
+  .link {
+    display: block;
+  }
+
+}

@@ -113,3 +113,14 @@ main {
 mat-toolbar, main, footer {
   flex-shrink: 0;
 }
+@media print {
+  #content > mat-toolbar > button {
+    display: none;
+  }
+  #content > mat-toolbar > span.title > a {
+    color: #4bb04f;
+  }
+  footer {
+    display: none;
+  }
+}
