@@ -15,9 +15,6 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  public getBlessingOfTheDay(): Observable<Blessing> {
-    return this.http.get<Blessing>(`${this.backendUrl}/de/today`);
-  }
   public getBlessingByDate(date: string): Observable<Blessing> {
     return this.http.get<Blessing>(`${this.backendUrl}/de/${date}`);
   }

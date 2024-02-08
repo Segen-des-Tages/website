@@ -40,3 +40,61 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .highlight {
   background-color: #4bb04f !important; 
 }
+
+share-button:nth-child(1) button { /* Facebook */
+  background-color: #4267B2 !important;
+}
+share-button:nth-child(2) button { /* Twitter / X */
+  background-color: black !important;
+}
+share-button:nth-child(3) button { /* WhatsApp */
+  background-color: #25D366 !important;
+}
+share-button:nth-child(4) button { /* E-Mail */
+  background-color: #FF961C !important;
+}
+share-button:nth-child(5) button { /* Print */
+  background-color: #765AA2 !important;
+}
+share-button:nth-child(6) button { /* Copy */
+  background-color: #607D8B !important;
+}
+expand-button button {  /* Expand */
+  background-color: #FF6651 !important;
+}
+share-button:nth-child(7) button { /* Linked In */
+  background-color: #006fa6 !important;
+}
+share-button:nth-child(8) button { /* Pinterest */
+  background-color: #BD091D !important;
+}
+share-button:nth-child(9) button { /* Reddit */
+  background-color: #FF4006 !important;
+}
+share-button:nth-child(10) button { /* Tumblr */
+  background-color: #36465D !important;
+}
+share-button:nth-child(11) button { /* Mix */
+  background-color: #eb4924 !important;
+}
+share-button:nth-child(12) button { /* Viber */
+  background-color: #665ca7 !important;
+}
+share-button:nth-child(13) button { /* VK */
+  background-color: #4C75A3 !important;
+}
+share-button:nth-child(14) button { /* Telegram */
+  background-color: #0088cc !important;
+}
+share-button:nth-child(15) button { /* Messenger */
+  background-color: #0080FF !important;
+}
+share-button:nth-child(16) button { /* Xing */
+  background-color: #006567 !important;
+}
+share-button:nth-child(17) button { /* Line */
+  background-color: #00B900 !important;
+}
+share-button:nth-child(18) button { /* SMS */
+  background-color: #20c16c !important;
+}

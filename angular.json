@@ -30,7 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-sharebuttons/themes/material.scss"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -101,7 +102,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-sharebuttons/themes/material.scss"
             ],
             "scripts": []
           }

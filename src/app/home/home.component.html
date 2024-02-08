@@ -1,21 +1,15 @@
 <p class="date">{{date | date: "dd.MM.YYYY"}}</p>
 <p class="blessing">{{blessingOfTheDay}}</p>
-<p>
-  <button 
-    mat-icon-button 
-    shareButton="facebook" 
-    #fbBtn="shareButton" 
-    [style.backgroundColor]="fbBtn?.color" 
-    style="color:white" 
-    url="https://segen-des-tages.de/{{date}}"
-    title="Segen des Tages vom {{date | date: 'dd.MM.YYYY'}}"
-    description="{{blessingOfTheDay}}"
-  >
-    <mat-icon>facebook</mat-icon>
-  </button>
-  <!-- TODO: Twitter -->
-  <!-- TODO: https://github.com/MurhafSousli/ngx-sharebuttons/wiki/Meta-tags-inputs-compatibility -->
-</p>
+<share-buttons
+  [theme]="'material'"
+  [include]="['facebook','twitter','whatsapp','email','print','copy','linkedin','pinterest','reddit','tumblr','mix','viber','vk','telegram','messenger','xing','line','sms']"
+  [show]="6"
+  [showText]="true"
+  [url]=shareURL
+  [title]=shareTitle
+  [description]=blessingOfTheDay
+  [autoSetMeta]="true">
+</share-buttons>
 <p class="description">Entdecken Sie tägliche Segenssprüche, die Ihr Herz berühren und Ihren Geist inspirieren. Eine Quelle der Hoffnung und des Lichts für jeden Tag.</p>
-<!-- TODO: set Page Title to ass date-->
-<!-- TODO: add blessing of the day to site descriptione-->
+
+
