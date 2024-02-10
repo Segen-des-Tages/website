@@ -20,6 +20,7 @@ export const routes: Routes = [
   { path : 'kontakt', component: ContactComponent, title: environment.title + ' | Kontakt'},
   { path : 'kalender', component: CalendarComponent, title: environment.title + ' | Kalender'},
   { path : 'alle', component: BlessingsComponent, title: environment.title + ' | Alle Segenssprüche'},
+  { path : 'alle/:filter', component: BlessingsComponent, title: environment.title + ' | Alle Segenssprüche'},
   { path : 'impressum', component: ImpressumComponent, title: environment.title + ' | Impressum'},
   { path : 'datenschutz', component: DatenschutzComponent, title: environment.title + ' | Datenschutz'},
   { path : '**', component: NotFoundComponent, title: environment.title + ' | 404'}

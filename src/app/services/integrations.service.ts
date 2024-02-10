@@ -6,77 +6,88 @@ import { catchError, tap } from 'rxjs/operators';
 import { Platform } from '../models/platform';
 import { Module } from '../models/module';
 import { Plugin } from '../models/plugin';
+import { resolve } from 'path';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class IntegrationsService {
-  public integrationsUrl = environment.integrationsUrl;
-  public validCacheTime: number = environment.cacheTime;
+  private integrationsUrl = environment.integrationsUrl;
+  private validCacheTimeinMilliseconds: number = environment.cacheTime;
+  private platformsCache: string = '';
+  private modulesCache: string = '';
+  private pluginsCache: string = '';
+  private timeofCacheInUnixTime: number = 0;
+  private platforms: Platform[] = [];
+  private modules: Module[] = [];
+  private plugins: Plugin[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
 
-  public getPlatforms(): Observable<Platform[]> {
-    const platformsCache = localStorage.getItem('platforms');
-    const cacheTime = localStorage.getItem('platformsCacheTime');
-    const isCacheValid = cacheTime && (new Date().getTime() - new Date(parseInt(cacheTime)).getTime()) < this.validCacheTime; 
-
-    if (platformsCache && isCacheValid) {
-      return of(JSON.parse(platformsCache));
-    } else {
-      return this.http.get<Platform[]>(`${this.integrationsUrl}/platforms.json`).pipe(
-        tap(platforms => {
-          localStorage.setItem('platforms', JSON.stringify(platforms));
-          localStorage.setItem('platformsCacheTime', new Date().getTime().toString());
-        }),
-        catchError(error => {
-          console.error('Error loading platforms', error);
-          return throwError(error);
-        })
-      );
-    }
   }
 
-  public getModules(): Observable<Module[]> {
-    const modulesCache = localStorage.getItem('modules');
-    const cacheTime = localStorage.getItem('modulesCacheTime');
-    const isCacheValid = cacheTime && (new Date().getTime() - new Date(parseInt(cacheTime)).getTime()) < this.validCacheTime; 
-
-    if (modulesCache && isCacheValid) {
-      return of(JSON.parse(modulesCache));
+  private isCacheValid(): boolean {
+    return (new Date().getTime() - new Date(this.timeofCacheInUnixTime).getTime()) < this.validCacheTimeinMilliseconds; 
+  }
+  private loadCacheFromLocalStorage(): void {
+    if (localStorage.getItem('timeofCacheInUnixTime')) {
+      this.timeofCacheInUnixTime = parseInt(localStorage.getItem('timeofCacheInUnixTime') || '') || 0;
     } else {
-      return this.http.get<Module[]>(`${this.integrationsUrl}/modules.json`).pipe(
-        tap(modules => {
-          localStorage.setItem('modules', JSON.stringify(modules));
-          localStorage.setItem('modulesCacheTime', new Date().getTime().toString());
-        }),
-        catchError(error => {
-          console.error('Error loading modules', error);
-          return throwError(error);
-        })
-      );
+      this.timeofCacheInUnixTime = new Date().getTime();
     }
+    this.platformsCache = localStorage.getItem('platformsCache') || '';
+    this.modulesCache = localStorage.getItem('modulesCache') || '';
+    this.pluginsCache = localStorage.getItem('pluginsCache') || '';
   }
 
-  public getPlugins(): Observable<Plugin[]> {
-    const pluginsCache = localStorage.getItem('plugins');
-    const cacheTime = localStorage.getItem('pluginsCacheTime');
-    const isCacheValid = cacheTime && (new Date().getTime() - new Date(parseInt(cacheTime)).getTime()) < this.validCacheTime; 
-
-    if (pluginsCache && isCacheValid) {
-      return of(JSON.parse(pluginsCache));
-    } else {
-      return this.http.get<Plugin[]>(`${this.integrationsUrl}/plugins.json`).pipe(
-        tap(plugins => {
-          localStorage.setItem('plugins', JSON.stringify(plugins));
-          localStorage.setItem('pluginsCacheTime', new Date().getTime().toString());
-        }),
-        catchError(error => {
-          console.error('Error loading plugins', error);
-          return throwError(error);
-        })
-      );
+  public async load(): Promise<void> {
+    this.loadCacheFromLocalStorage();
+    if (!this.isCacheValid()) {
+      let platformsAsString = await this.loadPlatformsFromServer();
+      localStorage.setItem('platformsCache', platformsAsString);
+      this.platforms = JSON.parse(platformsAsString);
+      let modulesAsString = await this.loadModulesFromServer();
+      localStorage.setItem('modulesCache', modulesAsString);
+      this.modules = JSON.parse(modulesAsString);
+      let pluginsAsString = await this.loadPluginsFromServer();
+      localStorage.setItem('pluginsCache', pluginsAsString);
+      this.plugins = JSON.parse(pluginsAsString);
     }
+    resolve();
+  }
+  private loadPlatformsFromServer(): Promise<string> {
+    return this.http.get<Platform[]>(`${this.integrationsUrl}/platforms.json`).toPromise().then(platforms => {
+      this.platformsCache = JSON.stringify(platforms);
+      return this.platformsCache;
+    });
+  }
+  private loadModulesFromServer(): Promise<string> {
+    return this.http.get<Module[]>(`${this.integrationsUrl}/modules.json`).toPromise().then(modules => {
+      this.modulesCache = JSON.stringify(modules);
+      return this.modulesCache;
+    });
+  }
+  private loadPluginsFromServer(): Promise<string> {
+    return this.http.get<Plugin[]>(`${this.integrationsUrl}/plugins.json`).toPromise().then(plugins => {
+      this.pluginsCache = JSON.stringify(plugins);
+      return this.pluginsCache;
+    });
+  }
+
+  public getPlatforms(): Platform[] {
+    return this.platforms;
+  }
+
+  public getActivePlatforms(): Platform[] {
+    return this.platforms.filter(platform => platform.status === 'active');
+  }
+
+  public getModules(): Module[] {
+    return this.modules
+  }
+
+  public getPlugins(): Plugin[] {
+    return this.plugins;
   }
 }

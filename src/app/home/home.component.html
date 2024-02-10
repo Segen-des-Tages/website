@@ -13,4 +13,10 @@
 <p class="description">Entdecken Sie tägliche Segenssprüche, die Ihr Herz berühren und Ihren Geist inspirieren. Eine Quelle der Hoffnung und des Lichts für jeden Tag.</p>
 <hr class="link"/>
 <p class="link">{{shareURL}}</p>
+<p *ngIf="numberOfActiveIntegrations > 0">Hier können Sie uns auch finden:</p>
+<div class="integrations" *ngIf="numberOfActiveIntegrations > 0">
+  <a *ngFor="let integration of activeIntegrations" [href]="integration.url" target="_blank">
+    <i class="fab fa-{{integration.icon}}" title="{{integration.name}}" matTooltip="{{integration.name}}"></i>
+  </a>
+</div>
 
