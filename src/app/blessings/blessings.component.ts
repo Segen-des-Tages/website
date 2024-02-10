@@ -24,10 +24,9 @@ export class BlessingsComponent {
   constructor(
     private api: ApiService
   ) { 
-    this.api.getAllBlessings().subscribe((blessings) => {
-      this.blessings = blessings;
-      this.filteredBlessings = this.blessings;
-    });
+    this.api.load();
+    this.blessings = this.api.getAllBlessings();
+    this.filteredBlessings = this.blessings;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

@@ -3,5 +3,6 @@ export const environment = {
   integrationsUrl: 'https://integrations.segen-des-tages.de',
   production: true,
   title: 'Segen des Tages',
-  cacheTime: 1209600000
+  cacheTime: 1209600000,
+  validCalendarCacheTime: 1209600000,
 };

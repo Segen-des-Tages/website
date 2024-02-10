@@ -3,5 +3,6 @@ export const environment = {
   integrationsUrl: 'http://localhost:5500',
   production: false,
   title: 'Segen des Tages',
-  cacheTime: 60000
+  cacheTime: 60000,
+  validCalendarCacheTime: 60000
 };

@@ -22,9 +22,8 @@ export class CalendarComponent implements AfterViewInit {
   constructor(
     private api: ApiService
   ) { 
-    this.api.getBlessingCalender(this.year).subscribe((blessings) => { 
-      this.blessings = blessings;
-    });
+    this.api.load();
+    this.blessings = this.api.getBlessingCalender(this.year);
   }
 
   isToday(date: Date): boolean {
